@@ -1,2 +1,2 @@
 # Project_Euler
-Solutions to Project Euler problems
+C++ solutions to problems found at https://projecteuler.net/archives.
