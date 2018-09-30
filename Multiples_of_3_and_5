@@ -1,0 +1,40 @@
+/*
+* If we list all the natural numbers below 10 that are multiples of 
+* 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+*
+* Find the sum of all the multiples of 3 or 5 below 1000.
+*/
+
+#include <iostream>
+unsigned long long naiveSumOfMultiples(int a, int b, int limit);
+unsigned long long fastSumOfMultiples(int a, int b, int limit);
+
+
+int main()
+{
+  std::cout << fastSumOfMultiples(3, 5, 1000) << std::endl;
+}
+
+unsigned long long naiveSumOfMultiples(int a, int b, int limit)
+{
+  unsigned long long sum = 0;
+  for(int i = 1; i < limit; i++)
+  {
+    if(i%a==0 || i%b==0)
+    {
+      sum+=i;
+    }
+  }
+  return sum;
+}
+
+unsigned long long fastSumOfMultiples(int a, int b, int limit)
+{
+  unsigned long long multiplesOfA = (limit-1)/a;
+  unsigned long long multiplesOfB = (limit-1)/b;
+  unsigned long long multiplesOfBoth = (limit-1)/(a*b);
+  unsigned long long sum = ((a+(a*multiplesOfA))*multiplesOfA)/2;
+  sum -= (((a*b)+((a*b)*multiplesOfBoth))*multiplesOfBoth)/2;
+  sum += ((b+(b*multiplesOfB))*multiplesOfB)/2;
+  return sum;
+}
